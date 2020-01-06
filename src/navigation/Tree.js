@@ -1,11 +1,11 @@
 import * as React from "react";
-import {TreeNode} from "./TreeNode";
+import {TreeNodeContainer} from "./TreeNodeContainer";
 
 export class Tree extends React.Component {
 
     render() {
         let items = this.props.notes.map(note => (
-            <TreeNode key={note.id} note={note}/>
+            <TreeNodeContainer key={note.id} note={note}/>
         ));
 
         return (

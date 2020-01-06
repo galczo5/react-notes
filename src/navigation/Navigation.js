@@ -1,16 +1,20 @@
 import * as React from "react";
+import {CreateNoteFormContainer} from "./CreateNoteFormContainer";
 import {Tree} from "./Tree";
-import {CreateNoteForm} from "./CreateNoteForm";
-
-import {notes} from "../model/TestData";
 
 export class Navigation extends React.Component {
+
+    setRootActive() {
+        return () => {
+            this.props.setRootActive();
+        }
+    }
 
     render() {
         return (
             <div>
-                <CreateNoteForm/>
-                <Tree notes={notes}/>
+                <CreateNoteFormContainer/>
+                <Tree notes={this.props.notes}/>
             </div>
         );
     }
