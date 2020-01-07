@@ -10,7 +10,7 @@ export class NotePath extends React.Component {
 
         const items = this.props.path.map(p => (
             <li className="breadcrumb-item">
-                <a href="#" onClick={this.setActiveNote(p)}>{ p.title }</a>
+                <span className="cursor-pointer" onClick={this.setActiveNote(p)}>{ p.title }</span>
             </li>
         ));
 
