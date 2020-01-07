@@ -28,6 +28,14 @@ export class CreateNoteForm extends React.Component {
         }
     }
 
+    hideForm() {
+        return () => {
+            this.setState({
+                formVisible: false
+            });
+        }
+    }
+
     updateTitle() {
         return (event) => this.setState({
             newNoteTitle: event.target.value
@@ -51,11 +59,19 @@ export class CreateNoteForm extends React.Component {
                                    onChange={this.updateTitle()}
                                    placeholder="Note title"/>
                         </div>
-                        <div className="col-auto pr-0">
-                            <button className="btn btn-sm btn-success"
-                                    onClick={this.addNote()}>
-                                Save
-                            </button>
+                        <div className="col-auto pr-0 pl-1">
+                            <div className="btn-group">
+                                <button className="btn btn-sm btn-secondary text-center"
+                                        style={{ width: '30px' }}
+                                        onClick={this.addNote()}>
+                                    <i className="fa fa-check"></i>
+                                </button>
+                                <button className="btn btn-sm btn-secondary text-center"
+                                        style={{ width: '30px' }}
+                                        onClick={this.hideForm()}>
+                                    <i className="fa fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 }

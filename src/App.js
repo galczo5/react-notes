@@ -1,10 +1,9 @@
 import React from 'react';
 import {Header} from "./header/Header.js";
-import {Footer} from "./footer/Footer.js";
-import {NoteEditor} from "./editor/NoteEditor";
 
 import './App.css'
 import {NavigationContainer} from "./navigation/NavigationContainer";
+import {NoteEditorContainer} from "./editor/containers";
 
 class App extends React.Component {
 
@@ -19,12 +18,11 @@ class App extends React.Component {
                                 <NavigationContainer/>
                             </div>
                             <div className="p-3">
-                                <NoteEditor/>
+                                <NoteEditorContainer/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </div>
         );
     }

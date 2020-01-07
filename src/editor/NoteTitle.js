@@ -17,7 +17,7 @@ export class NoteTitle extends React.Component {
         return (
             <div className="form-group mb-1">
                 <input type="text"
-                       className="form-control form-control-lg bg-dark border-dark"
+                       className="form-control form-control-lg bg-dark border-dark text-white font-weight-bold"
                        value={this.props.activeNote ? this.props.activeNote.title : ''}
                        onChange={this.onTitleChange()}/>
             </div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {HeaderTitle} from "./HeaderTitle";
 import {HeaderFilter} from "./HeaderFilter";
+import {HeaderFilterContainer} from "./HeaderFilterContainer";
 
 export class Header extends React.Component {
 
@@ -12,7 +13,7 @@ export class Header extends React.Component {
                         <HeaderTitle title="React notes app"/>
                     </div>
                     <div className="col-auto">
-                        <HeaderFilter/>
+                        <HeaderFilterContainer/>
                     </div>
                 </div>
             </div>

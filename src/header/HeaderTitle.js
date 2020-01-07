@@ -5,7 +5,10 @@ export class HeaderTitle extends React.Component {
     render() {
         return (
             <div className="card-title mb-0">
-                { this.props.title }
+                <i className="fas fa-sticky-note mr-2"></i>
+                <b>
+                    { this.props.title }
+                </b>
             </div>
         );
     }

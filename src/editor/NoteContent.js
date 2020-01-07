@@ -16,9 +16,9 @@ export class NoteContent extends React.Component {
     render() {
         return (
             <div className="form-group mb-0">
-                    <textarea className="form-control pl-3 bg-dark border-dark"
+                    <textarea className="form-control pl-3 bg-dark border-dark text-white"
                               style={{
-                                  height: '50vh'
+                                  height: '60vh'
                               }} value={this.props.activeNote ? this.props.activeNote.content : ''}
                               onChange={this.contentChange()}></textarea>
             </div>

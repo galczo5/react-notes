@@ -14,7 +14,7 @@ export class Navigation extends React.Component {
         return (
             <div>
                 <CreateNoteFormContainer/>
-                <Tree notes={this.props.notes}/>
+                <Tree notes={this.props.filterActive ? this.props.filteredNotes : this.props.notes}/>
             </div>
         );
     }
