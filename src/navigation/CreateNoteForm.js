@@ -49,7 +49,7 @@ export class CreateNoteForm extends React.Component {
                      height: '32px'
                  }}>
                 { !this.state.formVisible &&
-                    <a href="#" onClick={this.showForm()}>Create new note</a>
+                    <span className="font-weight-bold cursor-pointer" onClick={this.showForm()}>Create new note</span>
                 }
                 { this.state.formVisible &&
                     <div className="row">
