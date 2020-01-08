@@ -1,22 +1,20 @@
 import * as React from "react";
-import {CreateNoteFormContainer} from "./CreateNoteFormContainer";
 import {Tree} from "./Tree";
+import {useSelector} from "react-redux";
+import {CreateNoteForm} from "./CreateNoteForm";
 
-export class Navigation extends React.Component {
+export const Navigation = function () {
 
-    setRootActive() {
-        return () => {
-            this.props.setRootActive();
-        }
-    }
+    const filter = useSelector(state => state.notes.filter);
+    const filteredNotes = useSelector(state => state.notes.filteredNotes);
+    const notes = useSelector(state => state.notes.notes);
+    const activeNote = useSelector(state => state.notes.active);
 
-    render() {
-        return (
-            <div>
-                <CreateNoteFormContainer/>
-                <Tree notes={this.props.filterActive ? this.props.filteredNotes : this.props.notes}/>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <CreateNoteForm/>
+            <Tree notes={filter ? filteredNotes : notes} activeNote={activeNote}/>
+        </div>
+    );
+};
 
-}

@@ -1,27 +1,25 @@
 import * as React from "react";
 import {Note} from "../model/Note";
+import {useDispatch} from "react-redux";
+import {updateNote} from "../actions";
 
-export class NoteTitle extends React.Component {
+export const NoteTitle = function ({ activeNote }) {
+    const dispatch = useDispatch();
+    const onTitleChange = (event) => {
+        const note = new Note({
+            ...activeNote,
+            title: event.target.value
+        });
+        dispatch(updateNote(note));
+    };
 
-    onTitleChange() {
-        return (event) => {
-            const note = new Note({
-                ...this.props.activeNote,
-                title: event.target.value
-            });
-            this.props.updateNote(note);
-        };
-    }
+    return (
+        <div className="form-group mb-1">
+            <input type="text"
+                   className="form-control form-control-lg bg-dark border-dark text-white font-weight-bold"
+                   value={activeNote.title}
+                   onChange={onTitleChange}/>
+        </div>
+    );
 
-    render() {
-        return (
-            <div className="form-group mb-1">
-                <input type="text"
-                       className="form-control form-control-lg bg-dark border-dark text-white font-weight-bold"
-                       value={this.props.activeNote ? this.props.activeNote.title : ''}
-                       onChange={this.onTitleChange()}/>
-            </div>
-        );
-    }
-
-}
+};
