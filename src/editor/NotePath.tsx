@@ -1,14 +1,16 @@
 import * as React from "react";
 import {useDispatch} from "react-redux";
 import {setActiveNote} from "../actions";
+import {Note} from "../model/Note";
 
-export const NotePath = function ({ path }) {
+export const NotePath = function (props: { path: Array<Note> }) {
     const dispatch = useDispatch();
-    const items = path.map(p => (
-        <li key={p.id} className="breadcrumb-item">
+
+    const items = props.path.map(p => (
+        <li key={p.getId()} className="breadcrumb-item">
             <span className="cursor-pointer"
                   onClick={() => dispatch(setActiveNote(p))}>
-                { p.title }
+                { p.getTitle() }
             </span>
         </li>
     ));

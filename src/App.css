@@ -1,3 +1,7 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .app-grid {
   display: grid;
   grid-template-columns: 4fr 8fr;
