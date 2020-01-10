@@ -1,24 +1,27 @@
 import * as React from "react";
-import {NoteContentContainer, NotePathContainer, NoteTitleContainer} from "./containers";
 import {NoteEditorPlaceholder} from "./NoteEditorPlaceholder";
+import {NoteTitle} from "./NoteTitle";
+import {NoteContent} from "./NoteContent";
+import {NotePath} from "./NotePath";
+import {useSelector} from "react-redux";
 
-export class NoteEditor extends React.Component {
+export const NoteEditor = function () {
 
-    render() {
-        return (
-            <div className="rounded bg-dark">
-                { this.props.activeNote &&
-                    <React.Fragment>
-                        <NoteTitleContainer/>
-                        <NotePathContainer/>
-                        <NoteContentContainer/>
-                    </React.Fragment>
-                }
-                { !this.props.activeNote &&
-                   <NoteEditorPlaceholder/>
-                }
-            </div>
-        );
-    }
+    const activeNote = useSelector(state => state.notes.active);
+    const path = useSelector(state => state.notes.path);
 
-}
+    return (
+        <div className="rounded bg-dark">
+            { activeNote &&
+                <>
+                    <NoteTitle activeNote={activeNote}/>
+                    <NotePath path={path}/>
+                    <NoteContent activeNote={activeNote}/>
+                </>
+            }
+            { !activeNote &&
+                <NoteEditorPlaceholder/>
+            }
+        </div>
+    );
+};

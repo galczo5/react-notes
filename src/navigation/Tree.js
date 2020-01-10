@@ -1,18 +1,15 @@
 import * as React from "react";
-import {TreeNodeContainer} from "./TreeNodeContainer";
+import {TreeNode} from "./TreeNode";
 
-export class Tree extends React.Component {
+export const Tree = function ({ notes, activeNote }) {
 
-    render() {
-        let items = this.props.notes.map(note => (
-            <TreeNodeContainer key={note.id} note={note}/>
-        ));
+    let items = notes.map(note => (
+        <TreeNode key={note.id} note={note} activeNote={activeNote}/>
+    ));
 
-        return (
-            <ul className="list-group border-0">
-                { items }
-            </ul>
-        );
-    }
-
-}
+    return (
+        <ul className="list-group border-0">
+            { items }
+        </ul>
+    );
+};

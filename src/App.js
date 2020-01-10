@@ -2,8 +2,8 @@ import React from 'react';
 import {Header} from "./header/Header.js";
 
 import './App.css'
-import {NavigationContainer} from "./navigation/NavigationContainer";
-import {NoteEditorContainer} from "./editor/containers";
+import {NoteEditor} from "./editor/NoteEditor";
+import {Navigation} from "./navigation/Navigation";
 
 class App extends React.Component {
 
@@ -15,10 +15,10 @@ class App extends React.Component {
                     <div className="card-body m-0 p-0">
                         <div className="app-grid">
                             <div className="p-3">
-                                <NavigationContainer/>
+                                <Navigation/>
                             </div>
                             <div className="p-3">
-                                <NoteEditorContainer/>
+                                <NoteEditor/>
                             </div>
                         </div>
                     </div>
