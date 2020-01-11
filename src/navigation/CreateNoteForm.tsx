@@ -7,8 +7,8 @@ import {addNote} from "../actions";
 export const CreateNoteForm = function () {
 
     const dispatch = useDispatch();
-    const [formVisible, setFormVisible] = useState(false);
-    const [title, setTitle] = useState('');
+    const [formVisible, setFormVisible] = useState<boolean>(false);
+    const [title, setTitle] = useState<string>('');
 
     const createNote = () => {
         dispatch(addNote(title));
@@ -19,7 +19,7 @@ export const CreateNoteForm = function () {
     const hideForm = () => setFormVisible(false);
     const showForm = () => setFormVisible(true);
 
-    const updateTitle = (event) => setTitle(event.target.value);
+    const updateTitle = (event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value);
 
     return (
         <div style={{ height: '32px' }}>

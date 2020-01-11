@@ -1,6 +1,15 @@
 import {Note} from "./model/Note";
 
-const defaultState = {
+export type ActiveNote = Note | null;
+export interface Notes {
+    notes: Array<Note>;
+    filteredNotes: Array<Note>,
+    filter: string,
+    path: Array<Note>,
+    active: ActiveNote
+}
+
+const defaultState: Notes = {
     notes: [],
     filter: '',
     filteredNotes: [],
@@ -8,11 +17,14 @@ const defaultState = {
     active: null
 };
 
-export const notes = (state = defaultState, action) => {
+export const notes = (state: Notes = defaultState, action: any) => {
     if (action.type === 'ADD_NOTE') {
         let root = [...state.notes];
         if (state.active) {
-            state.active.children = [...state.active.children, action.note];
+            state.active.setChildren([
+                ...state.active.getChildren(),
+                action.note]
+            );
         } else {
             root = [...state.notes, action.note];
         }
@@ -26,14 +38,14 @@ export const notes = (state = defaultState, action) => {
     } else if (action.type === 'SET_ACTIVE_NOTE') {
         let activeNote = findNote(state.notes, action.note.id);
 
-        if (state.active && activeNote.id === state.active.id) {
+        if (state.active && activeNote && activeNote.getId() === state.active.getId()) {
             activeNote = null;
         }
 
         return {
             ...state,
             active: activeNote,
-            path: activeNote ? getPath(state.notes, activeNote.id) : []
+            path: activeNote ? getPath(state.notes, activeNote.getId()) : []
         };
     } else if (action.type === 'UPDATE_NOTE') {
         updateNote(state.notes, action.note);
@@ -44,11 +56,13 @@ export const notes = (state = defaultState, action) => {
     } else if (action.type === 'SET_FILTER') {
         const flat = flattenNotes(state.notes);
         const filter = action.filter;
-        const filteredNotes = flat.filter(n => n.title.indexOf(filter) !== -1 || n.content.indexOf(filter) !== -1)
-            .map(n => new Note({
-                ...n,
-                children: []
-            }));
+        const filteredNotes = flat.filter(n => n.getTitle().indexOf(filter) !== -1 || n.getContent().indexOf(filter) !== -1)
+            .map(n => new Note(
+                n.getId(),
+                n.getTitle(),
+                n.getContent(),
+                []
+            ));
 
         return {
             ...state,
@@ -60,24 +74,24 @@ export const notes = (state = defaultState, action) => {
     }
 };
 
-function flattenNotes(notes) {
+function flattenNotes(notes: Array<Note>): Array<Note> {
     let result = [...notes];
     for (let note of notes) {
-        const flat = flattenNotes(note.children);
+        const flat = flattenNotes(note.getChildren());
         result = [...result, ...flat];
     }
 
     return result;
 }
 
-function findNote(notes, id) {
+function findNote(notes: Array<Note>, id: number): Note | null {
 
     for (let note of notes) {
-        if (note.id === id) {
+        if (note.getId() === id) {
             return note;
         }
 
-        const childNote = findNote(note.children, id);
+        const childNote = findNote(note.getChildren(), id);
         if (childNote) {
             return childNote;
         }
@@ -86,14 +100,14 @@ function findNote(notes, id) {
     return null;
 }
 
-function getPath(notes, id) {
+function getPath(notes: Array<Note>, id: number): Array<Note> {
 
     for (let note of notes) {
-        if (note.id === id) {
+        if (note.getId() === id) {
             return [note];
         }
 
-        const childNote = getPath(note.children, id);
+        const childNote = getPath(note.getChildren(), id);
         if (childNote.length !== 0) {
             return [note, ...childNote];
         }
@@ -102,12 +116,12 @@ function getPath(notes, id) {
     return [];
 }
 
-function updateNote(notes, noteToUpdate) {
+function updateNote(notes: Array<Note>, noteToUpdate: Note): void {
     for (let i = 0; i < notes.length; i++) {
-        if (noteToUpdate.id === notes[i].id) {
+        if (noteToUpdate.getId() === notes[i].getId()) {
             notes[i] = noteToUpdate;
         }
 
-        updateNote(notes[i].children, noteToUpdate);
+        updateNote(notes[i].getChildren(), noteToUpdate);
     }
 }

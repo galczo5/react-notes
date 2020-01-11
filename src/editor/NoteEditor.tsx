@@ -4,11 +4,13 @@ import {NoteTitle} from "./NoteTitle";
 import {NoteContent} from "./NoteContent";
 import {NotePath} from "./NotePath";
 import {useSelector} from "react-redux";
+import {ActiveNote, Notes} from "../reducers";
+import {Note} from "../model/Note";
 
 export const NoteEditor = function () {
 
-    const activeNote = useSelector(state => state.notes.active);
-    const path = useSelector(state => state.notes.path);
+    const activeNote: ActiveNote = useSelector<Notes, ActiveNote>((state: Notes) => state.active);
+    const path = useSelector<Notes, Array<Note>>((state: Notes) => state.path);
 
     return (
         <div className="rounded bg-dark">

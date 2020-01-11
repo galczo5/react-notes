@@ -4,11 +4,10 @@ import * as serviceWorker from './serviceWorker';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootswatch/dist/solar/bootstrap.min.css';
-import './index.css';
 
 import {Provider} from "react-redux";
 import {store} from "./store";
-import App from "./App";
+import { App } from "./App.tsx";
 
 ReactDOM.render(
     <Provider store={store}>
