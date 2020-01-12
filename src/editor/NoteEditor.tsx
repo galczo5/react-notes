@@ -6,6 +6,7 @@ import {NotePath} from "./NotePath";
 import {useSelector} from "react-redux";
 import {ActiveNote, Notes} from "../reducers";
 import {Note} from "../model/Note";
+import {EditorTabs} from "./EditorTabs";
 
 export const NoteEditor = function () {
 
@@ -13,17 +14,24 @@ export const NoteEditor = function () {
     const path = useSelector<Notes, Array<Note>>((state: Notes) => state.path);
 
     return (
-        <div className="rounded bg-dark">
+        <>
+            <div>
+                <EditorTabs/>
+            </div>
             { activeNote &&
                 <>
-                    <NoteTitle activeNote={activeNote}/>
-                    <NotePath path={path}/>
-                    <NoteContent activeNote={activeNote}/>
+                    <div className="rounded-bottom bg-dark">
+                        <NoteTitle activeNote={activeNote}/>
+                        <NotePath path={path}/>
+                        <NoteContent activeNote={activeNote}/>
+                    </div>
                 </>
             }
             { !activeNote &&
-                <NoteEditorPlaceholder/>
+                <div className="rounded bg-dark">
+                    <NoteEditorPlaceholder/>
+                </div>
             }
-        </div>
+        </>
     );
 };
