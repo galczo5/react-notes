@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/react-notes/static/css/main.683f4932.chunk.css",
+    "main.js": "/react-notes/static/js/main.b89437fc.chunk.js",
+    "main.js.map": "/react-notes/static/js/main.b89437fc.chunk.js.map",
+    "runtime-main.js": "/react-notes/static/js/runtime-main.33efcc64.js",
+    "runtime-main.js.map": "/react-notes/static/js/runtime-main.33efcc64.js.map",
+    "static/css/2.391019e5.chunk.css": "/react-notes/static/css/2.391019e5.chunk.css",
+    "static/js/2.0ed3e76c.chunk.js": "/react-notes/static/js/2.0ed3e76c.chunk.js",
+    "static/js/2.0ed3e76c.chunk.js.map": "/react-notes/static/js/2.0ed3e76c.chunk.js.map",
+    "index.html": "/react-notes/index.html",
+    "precache-manifest.fbd1d6d7b69524719b2895bf0f3a4c77.js": "/react-notes/precache-manifest.fbd1d6d7b69524719b2895bf0f3a4c77.js",
+    "service-worker.js": "/react-notes/service-worker.js",
+    "static/css/2.391019e5.chunk.css.map": "/react-notes/static/css/2.391019e5.chunk.css.map",
+    "static/css/main.683f4932.chunk.css.map": "/react-notes/static/css/main.683f4932.chunk.css.map",
+    "static/js/2.0ed3e76c.chunk.js.LICENSE": "/react-notes/static/js/2.0ed3e76c.chunk.js.LICENSE",
+    "static/media/all.min.css": "/react-notes/static/media/fa-solid-900.f6121be5.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33efcc64.js",
+    "static/css/2.391019e5.chunk.css",
+    "static/js/2.0ed3e76c.chunk.js",
+    "static/css/main.683f4932.chunk.css",
+    "static/js/main.b89437fc.chunk.js"
+  ]
+}

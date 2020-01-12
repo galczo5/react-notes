@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,gBACE,cACF,CAEA,UACE,YAAa,CACb,6BACF","file":"main.683f4932.chunk.css","sourcesContent":[".cursor-pointer {\n  cursor: pointer;\n}\n\n.app-grid {\n  display: grid;\n  grid-template-columns: 4fr 8fr;\n}"]}
