@@ -15,6 +15,11 @@ export const updateFilter = (filter: string) => ({
     filter: filter
 });
 
+export const closeActive = () => ({
+    type: 'CLOSE_ACTIVE'
+});
+
+
 export const addNote = (title: string) => ({
     type: 'ADD_NOTE',
     note: new Note(

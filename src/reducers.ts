@@ -3,6 +3,7 @@ import {Note} from "./model/Note";
 export type ActiveNote = Note | null;
 export interface Notes {
     notes: Array<Note>;
+    openedNotes: Array<Note>;
     filteredNotes: Array<Note>,
     filter: string,
     path: Array<Note>,
@@ -11,8 +12,9 @@ export interface Notes {
 
 const defaultState: Notes = {
     notes: [],
-    filter: '',
+    openedNotes: [],
     filteredNotes: [],
+    filter: '',
     path: [],
     active: null
 };
@@ -29,22 +31,29 @@ export const notes = (state: Notes = defaultState, action: any) => {
             root = [...state.notes, action.note];
         }
 
+        let openedNotes = [ ...state.openedNotes, action.note ];
+
         return {
             ...state,
             active: action.note,
+            openedNotes: openedNotes,
             notes: root,
             path: getPath(root, action.note.id)
         };
     } else if (action.type === 'SET_ACTIVE_NOTE') {
         let activeNote = findNote(state.notes, action.note.id);
+        let openedNotes = state.openedNotes;
 
         if (state.active && activeNote && activeNote.getId() === state.active.getId()) {
             activeNote = null;
+        } else if (activeNote && openedNotes.indexOf(activeNote) === -1) {
+            openedNotes = [ ...openedNotes, activeNote ];
         }
 
         return {
             ...state,
             active: activeNote,
+            openedNotes: openedNotes,
             path: activeNote ? getPath(state.notes, activeNote.getId()) : []
         };
     } else if (action.type === 'UPDATE_NOTE') {
@@ -68,6 +77,13 @@ export const notes = (state: Notes = defaultState, action: any) => {
             ...state,
             filter: filter,
             filteredNotes: filteredNotes
+        };
+    } else if (action.type === 'CLOSE_ACTIVE') {
+        let openedTabs = state.openedNotes.filter(n => n.getId() !== state.active?.getId());
+        return {
+            ...state,
+            active: openedTabs.length ? openedTabs[0] : null,
+            openedNotes: openedTabs
         };
     } else {
         return state;
